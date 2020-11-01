@@ -207,22 +207,6 @@ public class ChainedHashMap<K, V> extends AbstractIterableMap<K, V> {
                 }
                 return result;
             }
-
-
-            // if (index < mapCount) {
-            //     Iterator<Map.Entry<K, V>> itr = chains[chainIndex].entrySet().iterator();
-            //     if (!itr.hasNext() && chainIndex < chains.length-1) {
-            //         while (chainIndex < chains.length-1 && chains[chainIndex] == null) {
-            //             chainIndex++;
-            //             itr = chains[chainIndex].entrySet().iterator();
-            //         }
-            //     }
-            //     index++;
-            //     return itr.next();
-            // } else {
-            //     throw new NoSuchElementException();
-            // }
-            // }
         }
     }
 }
