@@ -26,6 +26,14 @@ public class ChainedHashMapTests extends BaseMapTests {
     }
 
     @Test
+    void constructor_get_hasCorrectInitialChainCount() {
+        Map<String, Integer> map = createMap(100, 1, 10);
+        map.put("foo", 1);
+        map.put("fooo", 2);
+        System.out.println(map.get(2));
+    }
+
+    @Test
     void constructor_withInitialChainCount_hasCorrectInitialChainCount() {
         Map<String, Integer> map = createMap(100, 1, 10);
         map.put("foo", 1);

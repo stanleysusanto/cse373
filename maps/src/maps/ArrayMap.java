@@ -33,9 +33,9 @@ public class ArrayMap<K, V> extends AbstractIterableMap<K, V> {
     /**
      * This method will return a new, empty array of the given size that can contain
      * {@code Entry<K, V>} objects.
-     *
+     * <p>
      * Note that each element in the array will initially be null.
-     *
+     * <p>
      * Note: You do not need to modify this method.
      */
     @SuppressWarnings("unchecked")
@@ -99,7 +99,7 @@ public class ArrayMap<K, V> extends AbstractIterableMap<K, V> {
         if (!keyExisted && entries.length != 0) {
             entries[size] = entry;
             size++;
-        } else if (entries.length != 0){
+        } else if (entries.length != 0) {
             addedVal = entries[index].getValue();
             entries[index] = entry;
         }
@@ -114,8 +114,8 @@ public class ArrayMap<K, V> extends AbstractIterableMap<K, V> {
             for (SimpleEntry<K, V> map : entries) {
                 if (map != null && (key == map.getKey() || map.getKey().equals(key))) {
                     value = map.getValue();
-                    entries[index] = entries[size-1];
-                    entries[size-1] = null;
+                    entries[index] = entries[size - 1];
+                    entries[size - 1] = null;
                     size--;
                     break;
                 }

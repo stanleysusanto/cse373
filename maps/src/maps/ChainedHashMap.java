@@ -41,10 +41,11 @@ public class ChainedHashMap<K, V> extends AbstractIterableMap<K, V> {
     /**
      * This method will return a new, empty array of the given size that can contain
      * {@code AbstractIterableMap<K, V>} objects.
-     *
+     * <p>
      * Note that each element in the array will initially be null.
-     *
+     * <p>
      * Note: You do not need to modify this method.
+     *
      * @see ArrayMap createArrayOfEntries method for more background on why we need this method
      */
     @SuppressWarnings("unchecked")
@@ -54,10 +55,10 @@ public class ChainedHashMap<K, V> extends AbstractIterableMap<K, V> {
 
     /**
      * Returns a new chain.
-     *
+     * <p>
      * This method will be overridden by the grader so that your ChainedHashMap implementation
      * is graded using our solution ArrayMaps.
-     *
+     * <p>
      * Note: You do not need to modify this method.
      */
     protected AbstractIterableMap<K, V> createChain(int initialSize) {
@@ -80,34 +81,26 @@ public class ChainedHashMap<K, V> extends AbstractIterableMap<K, V> {
         V pastVal = null;
         int bucketKey = key == null ? 0 : Math.abs(key.hashCode()) % chains.length;
         AbstractIterableMap<K, V> chain = chains[bucketKey];
-        //if map not null and does not contains key
         if (chain != null && !chain.containsKey(key)) {
             chain.put(key, value);
             size++;
-            // mapCount++;
-        }
-        else if (chain != null && chain.containsKey(key)) {
+        } else if (chain != null && chain.containsKey(key)) {
             pastVal = chain.get(key);
             chain.remove(key);
             chain.put(key, value);
-        }
-        else if (chain == null) {
+        } else if (chain == null) {
             chains[bucketKey] = createChain(10);
             chains[bucketKey].put(key, value);
-            size++; // size should change here
+            size++;
             mapCount++;
         }
-        //Resizing condition
-        if ((size * 1.0) / chainInitial >= loadFactorThreshold) {
+        if ((size * 1.0) / chains.length >= loadFactorThreshold) {
             AbstractIterableMap<K, V>[] newChains = createArrayOfChains(2 * chains.length);
             size = 0;
             for (int i = 0; i < chains.length; i++) {
                 if (this.chains[i] != null) {
-                    // for every item in this array map
                     for (Entry<K, V> entry : this.chains[i]) {
-                        // rehash
                         int newHashCode = entry.getKey() == null ? 0 : Math.abs(key.hashCode()) % (2 * chains.length);
-                        // create chain if needed
                         if (newChains[newHashCode] == null) {
                             newChains[newHashCode] = this.createChain(chainInitial);
                         }

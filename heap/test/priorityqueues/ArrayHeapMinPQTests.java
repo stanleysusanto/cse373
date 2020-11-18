@@ -43,6 +43,24 @@ public class ArrayHeapMinPQTests extends BaseTest {
         }
 
         @Test
+        void custom_test(){
+            ExtrinsicMinPQ<String> pq = setUpMinPQ();
+            pq.add("one", 1);
+            pq.add("two", 2);
+            pq.add("three", 3);
+            pq.add("four", 4);
+            pq.add("five", 5);
+            pq.add("six", 6);
+            pq.add("seven", 7);
+            pq.add("eight", 8);
+            pq.add("nine", 9);
+            pq.add("ten", 10);
+            pq.changePriority("ten", 1.8);
+            pq.removeMin();
+            System.out.println(pq.peekMin());
+        }
+
+        @Test
         void contains_returnsFalse() {
             ExtrinsicMinPQ<String> pq = setUpMinPQ();
             boolean output = pq.contains("Winthrop");
